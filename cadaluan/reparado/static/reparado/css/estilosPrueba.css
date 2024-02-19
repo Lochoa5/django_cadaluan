@@ -1,0 +1,69 @@
+/* Color del texto negro (#000000) */
+body, .navbar, .btn-primary {
+    color: #000000;
+}
+/* Fondo gris (#c8c8c8) */
+.bg-dark {
+    background-color: #c8c8c8;
+}
+/* Color de texto blanco (#ffffff) */
+.text-white, .navbar-toggler-icon {
+    color: #ffffff;
+}
+/* Color naranjado (#ff6600) */
+.btn-primary {
+    background-color: #ff6600;
+    border-color: #ff6600;
+}
+/* Color azul (#badbf3) */
+.btn-primary:hover {
+    background-color: #badbf3;
+    border-color: #badbf3;
+}
+/* Estilos adicionales para el botón llamativo */
+/* Estilos para un botón aún más grande y llamativo */
+.btn-primary-llamativo {
+    background-color: #ff6600;
+   /* Color de fondo naranjado */
+    color: #fff;
+   /* Texto en blanco */
+    border: none;
+   /* Sin borde */
+    padding: 20px 40px;
+   /* Espaciado interior más grande */
+    font-size: 1.5rem;
+   /* Tamaño de fuente más grande */
+    border-radius: 10px;
+   /* Bordes redondeados */
+    transition: background-color 0.3s;
+   /* Transición de color de fondo */
+}
+.btn-primary-llamativo:hover {
+    background-color: #badbf3;
+   /* Color de fondo naranjado más claro al pasar el mouse */
+}
+.hero-con-imagen {
+    background-image: url('{% static "reparado/img/portada1.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/* Define la clase btn-orange y aplica el color de fondo */
+.btn-orange {
+    background-color: #ff6600;
+    color: #fff;
+   /* Cambia el color del texto si es necesario */
+    border-color: #ff6600;
+   /* Cambia el color del borde si es necesario */
+}
+/* Cambia el color de fondo al pasar el ratón por encima del botón (opcional) */
+.btn-orange:hover {
+    background-color: #badbf3;
+    border-color: #badbf3;
+}
+
+.fas {
+    color: #ff6600;
+}
+
+

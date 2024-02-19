@@ -1,0 +1,173 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="{% static 'reparado/css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'reparado/css/estilos.css' %}" />
+		<link rel="stylesheet" href="{% static 'reparado/css/styles.css' %}" />
+		<title>ReparaDo! - {% block titulo %}{% endblock %}</title>
+	</head>
+	<body>
+		<header>
+			<img id="banner" src="{% static 'reparado/img/bricolaje2.jpg' %}" alt="Imagen de bienvenida" />
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<!--<nav class="navbar navbar-expand-sm navbar-dark bg-dark">-->
+				<div class="container-fluid">
+					<a class="navbar-brand" href="{% url 'index' %}">ReparaDo!</a>
+
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="mynavbar">
+						<ul class="navbar-nav me-auto">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Seguridad</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a class="dropdown-item" href="./registroUsuario.html">Registrar Usuario</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="./informacionUsuarios.html">Visualizar Usuario</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Servicios</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="./crearServicio.html">Crear Servicio</a></li>
+									<li>
+										<a class="dropdown-item" href="./visualizarServicios.html">Visualizar Servicios</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Solicitudes</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a class="dropdown-item" href="solicitudServicio.html">Crear Solicitud</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="./serviciosSolicitados.html">Visualizar Solicitud</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Pagos</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="#">Generar Factura</a></li>
+									<li>
+										<a class="dropdown-item" href="#">Visualizar Métodos de Pago</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Perfil</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="#">Ver perfil</a></li>
+									<li>
+										<a class="dropdown-item" href="#">Cambiar contraseña</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<main>
+			{% if messages %} {% for message in messages %}
+			<div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+				{{ message }}
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+			{% endfor %} {% endif %}
+			<section>
+				<div id="jumbotron" class="p-5 bg-dark text-white rounded text-center">
+					<h1>Bienvenido a ReparaDo!</h1>
+					<p>Ofrecemos servicios de reparación para hogares y empresas.</p>
+				</div>
+			</section>
+
+			<section id="tarjeta" class="container">
+				<div class="row">
+					<div class="col-md-6 col-lg-3 mb-3">
+						<div class="card">
+							<img class="card-img-top" src="{% static 'reparado/img/fontaneria.jpg' %}" alt="Card image" />
+							<div class="card-body">
+								<h4 class="card-title">Fontanería</h4>
+								<p class="card-text">Solucionamos problemas de fontanería en tu hogar o negocio.</p>
+								<a href="#" class="btn btn-dark">Ver más</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-3">
+						<div class="card">
+							<img class="card-img-top" src="{% static 'reparado/img/obraBlanca.jpg' %}" alt="Card image" />
+							<div class="card-body">
+								<h4 class="card-title">Obra Blanca</h4>
+								<p class="card-text">Realizamos trabajos de obra blanca para renovar tus espacios.</p>
+								<a href="#" class="btn btn-dark">Ver más</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-3">
+						<div class="card">
+							<img class="card-img-top" src="{% static 'reparado/img/electricidad.jpg' %}" alt="Card image" />
+							<div class="card-body">
+								<h4 class="card-title">Electricidad</h4>
+								<p class="card-text">Reparamos problemas eléctricos y realizamos instalaciones.</p>
+								<a href="#" class="btn btn-dark">Ver más</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-3">
+						<div class="card">
+							<img class="card-img-top" src="{% static 'reparado/img/carpinteria.jpg' %}" alt="Card image" />
+							<div class="card-body">
+								<h4 class="card-title">Otros Servicios</h4>
+								<p class="card-text">Ofrecemos una variedad de servicios para satisfacer tus necesidades.</p>
+								<a href="#" class="btn btn-dark">Ver más</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="container">
+				<div class="card mb-3">
+					<div class="row g-0">
+						<div class="col-md-4">
+							<img src="{% static 'reparado/img/interiores.jpg' %}" class="img-fluid rounded-start" alt="..." />
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title">Trabajos recientes</h5>
+								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little longer.</p>
+								<p class="card-text">
+									<small class="text-muted">Last updated 3 mins ago</small>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		{% include 'reparado/layouts/footer.html' %}
+
+		<script src="{% static 'reparado/js/bootstrap.bundle.min.js' %}"></script>
+		<script src="{% static 'reparado/js/libreria.js' %}"></script>
+	</body>
+</html>

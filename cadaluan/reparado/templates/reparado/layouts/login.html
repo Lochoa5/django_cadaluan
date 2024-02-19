@@ -1,0 +1,210 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ReparaDo! - Tu Plataforma de Servicios</title>
+		<link rel="stylesheet" href="{% static 'reparado/css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'reparado/css/estilos.css' %}" />
+		<link rel="stylesheet" href="{% static 'reparado/css/styles.css' %}" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" />
+	</head>
+	<body>
+		<header>
+			<img id="banner" src="{% static 'reparado/img/bricolaje2.jpg' %}" alt="Imagen de bienvenida" />
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<!--<nav class="navbar navbar-expand-sm navbar-dark bg-dark">-->
+				<div class="container-fluid">
+					<a class="navbar-brand" href="{% url 'index' %}">ReparaDo!</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="mynavbar">
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item">
+								<button class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+									Iniciar Sesión
+								</button>
+							</li>
+							<li class="nav-item">
+								<button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#registroModal">
+									Registrarse
+								</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<main>
+			{% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+			<section>
+				<div id="jumbotron" class="p-5 bg-dark text-white rounded text-center">
+					<h1>Bienvenido a ReparaDo!</h1>
+					<p>Ofrecemos servicios de reparación para hogares y empresas.</p>
+				</div>
+			</section>
+
+			<section id="tarjeta" class="container">
+				<div class="row">
+					<div class="col-md-6 col-lg-3 mb-3">
+						<div class="card">
+							<img class="card-img-top" src="{% static 'reparado/img/fontaneria.jpg' %}" alt="Card image" />
+							<div class="card-body">
+								<h4 class="card-title">Fontanería</h4>
+								<p class="card-text">Solucionamos problemas de fontanería en tu hogar o negocio.</p>
+								<a href="#" class="btn btn-dark">Ver más</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-3">
+						<div class="card">
+							<img class="card-img-top" src="{% static 'reparado/img/obraBlanca.jpg' %}" alt="Card image" />
+							<div class="card-body">
+								<h4 class="card-title">Obra Blanca</h4>
+								<p class="card-text">Realizamos trabajos de obra blanca para renovar tus espacios.</p>
+								<a href="#" class="btn btn-dark">Ver más</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-3">
+						<div class="card">
+							<img class="card-img-top" src="{% static 'reparado/img/electricidad.jpg' %}" alt="Card image" />
+							<div class="card-body">
+								<h4 class="card-title">Electricidad</h4>
+								<p class="card-text">Reparamos problemas eléctricos y realizamos instalaciones.</p>
+								<a href="#" class="btn btn-dark">Ver más</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-lg-3 mb-3">
+						<div class="card">
+							<img class="card-img-top" src="{% static 'reparado/img/carpinteria.jpg' %}" alt="Card image" />
+							<div class="card-body">
+								<h4 class="card-title">Otros Servicios</h4>
+								<p class="card-text">Ofrecemos una variedad de servicios para satisfacer tus necesidades.</p>
+								<a href="#" class="btn btn-dark">Ver más</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="container">
+				<div class="card mb-3">
+					<div class="row g-0">
+						<div class="col-md-4">
+							<img src="{% static 'reparado/img/interiores.jpg' %}" class="img-fluid rounded-start" alt="..." />
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title">Trabajos recientes</h5>
+								<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+								<p class="card-text">
+									<small class="text-muted">Last updated 3 mins ago</small>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		{% include 'reparado/layouts/footer.html' %}
+		<!-- Modales de inicio de sesión y registro -->
+		<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-slide-right">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form action="{% url 'login' %}" method="post">
+							{% csrf_token %}
+							<div class="mb-3">
+								<label for="username" class="form-label">Usuario</label>
+								<input type="text" class="form-control" id="username" name="username" required />
+							</div>
+							<div class="mb-3">
+								<label for="password" class="form-label">Contraseña:</label>
+								<input type="password" class="form-control" id="password" name="password" required />
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+								<button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-slide-right">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="registroModalLabel">Registrarse</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="mb-3">
+								<label for="nombre" class="form-label">Nombre:</label>
+								<input type="text" class="form-control" id="nombre" name="nombre" required />
+							</div>
+							<div class="mb-3">
+								<label for="apellido" class="form-label">Apellido:</label>
+								<input type="text" class="form-control" id="apellido" name="apellido" required />
+							</div>
+							<div class="mb-3">
+								<label for="email" class="form-label">Correo Electrónico:</label>
+								<input type="email" class="form-control" id="email" name="email" required />
+							</div>
+							<div class="mb-3">
+								<label for="password1" class="form-label">Contraseña:</label>
+								<input type="password" class="form-control" id="password1" name="password" required />
+							</div>
+							<div class="mb-3">
+								<label for="confirm-password" class="form-label">Confirmar Contraseña:</label>
+								<input type="password" class="form-control" id="confirm-password" name="confirm-password" required />
+							</div>
+							<div class="mb-3">
+								<label for="telefono" class="form-label">Teléfono:</label>
+								<input type="text" class="form-control" id="telefono" name="telefono" />
+							</div>
+							<div class="mb-3">
+								<label for="direccion" class="form-label">Dirección:</label>
+								<input type="text" class="form-control" id="direccion" name="direccion" />
+							</div>
+							<div class="mb-3">
+								<label for="ciudad" class="form-label">Ciudad:</label>
+								<input type="text" class="form-control" id="ciudad" name="ciudad" />
+							</div>
+							<div class="form-check">
+								<input type="checkbox" class="form-check-input" id="aceptar-terminos" name="aceptar-terminos" required />
+								<label class="form-check-label" for="aceptar-terminos">Acepto los términos y condiciones</label>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+						<button type="button" class="btn btn-primary">Registrarse</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	</body>
+</html>
