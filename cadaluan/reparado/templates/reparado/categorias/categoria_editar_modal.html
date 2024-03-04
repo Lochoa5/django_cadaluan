@@ -1,32 +1,32 @@
-<!-- Modal de edición para cada categoria -->
-<div class="modal fade" id="editarModal{{ r.id }}" tabindex="-1"
-     aria-labelledby="editarModalLabel{{ r.id }}" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editarModalLabel{{ r.id }}">Editar Categoría</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="{% url 'categorias_editar' id_categoria=r.id %}">
-                    {% csrf_token %}
-                    <input type="hidden" id="id_categoria" name="id_categoria" value="">
-                    <div class="mb-3">
-                        <label for="nombreCategoria" class="form-label">Nombre de la Categoría</label>
-                        <input type="text" class="form-control" id="nombreCategoria" name="nombre_cat"
-                               value="{{r.nombre_cat }}"/>
-                    </div>
-                    <div class="mb-3">
-                        <label for="descripcionCategoria" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="descripcionCategoria"
-                                  name="desc">{{ r.desc }}</textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    </div>
-                </form>
-            </div>
+{% load static %}
+<!-- Editar Modal -->
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Editar Categoría</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="categoriaEditar">
+            <form action="{% url 'categorias_editar' categoria.id %}" method="post" id="formEditarCategoria">
+                {% csrf_token %}
+                <input type="hidden" id="categoria_id" name="categoria_id" value="{{ categoria.id }}" />
+
+                <div class="mb-3">
+                    <label for="nombre_cat" class="form-label">Nombre de la Categoría:</label>
+                    <input type="text" class="form-control" id="nombre_cat" name="nombre_cat" value="{{ categoria.nombre_cat }}" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="desc" class="form-label">Descripción de la Categoría:</label>
+                    <input type="text" class="form-control" id="desc" name="desc" value="{{ categoria.desc }}" />
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

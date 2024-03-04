@@ -1,0 +1,10 @@
+<form action="#" method="post">
+    {% csrf_token %}
+    <input type="hidden" id="categoria_id" name="categoria_id" value="{{ registro.id }}">
+    <label for="nombre_cat">Nombre de la Categoría:</label>
+    <input type="text" id="nombre_cat" name="nombre_cat" value="{{ registro.nombre_cat }}">
+    <!-- Otros campos del formulario -->
+    <label for="desc">Descripción de la Categoría:</label>
+    <input type="text" id="desc" name="desc" value="{{ registro.desc }}">
+    <button type="submit" class="btn btn-primary btnGuardarCambios">Guardar Cambios</button>
+</form>

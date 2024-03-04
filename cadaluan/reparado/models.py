@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from django.db import models
 
 
@@ -20,6 +21,10 @@ class Usuario(models.Model):
     )
     rol = models.CharField(max_length=5, choices=ROLES, default="USUAR", null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        # Al guardar, utiliza make_password para almacenar la contraseña de manera segura
+        self.password = make_password(self.password)
+        super().save(*args, **kwargs)
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
 

@@ -1,1 +1,63 @@
 {% extends 'reparado/layouts/nueva_base.html' %}
+
+{% load static %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block principal %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show"
+             role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<section>
+    <div id="jumbotron" class="p-5 bg-dark text-white rounded text-center">
+        <h1>Panel Administrador</h1>
+    </div>
+</section>
+
+<section id="service-links" class="container">
+    <div class="row">
+        <div class="col-md-6 col-lg-3 mb-3">
+            <a href="{% url 'categorias' %}" class="text-decoration-none">
+                <div class="card h-100">
+                    <img class="card-img-top" src="{% static 'reparado/img/servicios.jpg' %}" alt="Electricidad"/>
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Categorias</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+            <a href="{% url 'servicios' %}" class="text-decoration-none">
+                <div class="card h-100">
+                    <img class="card-img-top" src="{% static 'reparado/img/solicitudes.jpg' %}"
+                         alt="Otros Servicios"/>
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Servicios</h4>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-3">
+            <a href="{% url 'usuarios' %}" class="text-decoration-none">
+                <div class="card h-100">
+                    <img class="card-img-top" src="{% static 'reparado/img/carpinteria.jpg' %}" alt="Obra Blanca"/>
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Usuarios</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+<!-- Resto del contenido -->
